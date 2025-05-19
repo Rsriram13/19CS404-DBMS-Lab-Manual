@@ -1,46 +1,110 @@
-# DBMS Laboratory Manual Submission
+# Experiment 1: Entity-Relationship (ER) Diagram
 
-## 🎓 Course: 19CS404 Database Management System and its Applications  
-## 🧑‍🏫 Instructor: Ms. G Abinaya 
+## 🎯 Objective:
+To understand and apply the concepts of ER modeling by creating an ER diagram for a real-world application.
 
-![image](https://github.com/user-attachments/assets/7e6f9751-b530-4526-9a3d-8e322e3b2e6d)
+## 📚 Purpose:
+The purpose of this workshop is to gain hands-on experience in designing ER diagrams that visually represent the structure of a database including entities, relationships, attributes, and constraints.
 
-### 📝 Instructions for Students
+---
 
-1. Fork this repository to your GitHub profile.
-2. For each experiment:
-   SQL queries based on questions generated randomly from Moodle.
-   - Complete the question on Moodle.
-   - Each experiment folder contains **two Markdown files**
-     1. `README.md`
+## 🧪 Choose One Scenario:
 
-        This file contains:
-         - 🎯 **Aim**
-         - 📚 **Theory**
-         - 📝 **Result**
-        
-        You **do not need to edit** this file unless instructed.
-      3. `output.md`
+### 🔹 Scenario 1: University Database
+Design a database to manage students, instructors, programs, courses, and student enrollments. Include prerequisites for courses.
 
-         You **must update this file** with your answers and outputs.
-         For each of the 10 Moodle-generated questions:
-         - Paste the **question**
-         - Write the **SQL query** inside the code block
-         - Paste a **screenshot or terminal output** below it
-3. Commit and push your changes.
-4. Create a pull request to the original repository
+**User Requirements:**
+- Academic programs grouped under departments.
+- Students have admission number, name, DOB, contact info.
+- Instructors with staff number, contact info, etc.
+- Courses have number, name, credits.
+- Track course enrollments by students and enrollment date.
+- Add support for prerequisites (some courses require others).
 
-### ✅ Experiments List
+---
 
-| Exp No | Title                          | Module Based? |
-|--------|--------------------------------|---------------|
-| 1      | ER Diagram                     | No            |
-| 2      | DDL Commands                   | Yes           |
-| 3      | DML Commands                   | Yes           |
-| 4      | Aggregate, GROUP BY, HAVING   | Yes           |
-| 5      | Subqueries and Views          | Yes           |
-| 6      | Joins                         | Yes           |
-| 7      | Pl/sql                        | No            |
-| 8      | Procedures, Functions         | No            |
-| 9      | Cursors, Exception Handling   | No            |
-| 10     | Triggers                      | No            |
+### 🔹 Scenario 2: Hospital Database
+Design a database for patient management, appointments, medical records, and billing.
+
+**User Requirements:**
+- Patient details including contact and insurance.
+- Doctors and their departments, contact info, specialization.
+- Appointments with reason, time, patient-doctor link.
+- Medical records with treatments, diagnosis, test results.
+- Billing and payment details for each appointment.
+
+---
+
+## 📝 Tasks:
+1. Identify entities, relationships, and attributes.
+2. Draw the ER diagram using any tool (draw.io, dbdiagram.io, hand-drawn and scanned).
+3. Include:
+   - Cardinality & participation constraints
+   - Prerequisites for University OR Billing for Hospital
+4. Explain:
+   - Why you chose the entities and relationships.
+   - How you modeled prerequisites or billing.
+
+# ER Diagram Submission - Student Name
+
+## Scenario Chosen:
+University / Hospital (choose one)
+
+## ER Diagram:
+
+![image](https://github.com/user-attachments/assets/1a6b6b47-c0e5-4d4a-941f-614129dca688)
+
+
+
+
+
+## Entities and Attributes:
+- *Student*: Admission number (PK), Name, Date of birth, Email, Phone number    
+- *Department*: Department ID (PK), Department name  
+- *Program*: Program ID (PK), Program name  
+- *Course*: Course code (PK), Course name, Credits, Prerequisite  
+- *Instructor*: Instructor ID (PK), Name, Email  
+
+...
+
+## Relationships and Constraints:
+- *Stores Info (University–Student)*  
+  - Cardinality: One university stores many students (1:N)  
+  - Participation: Total on Student (every student belongs to a university)
+
+- *Contains (University–Department)*  
+  - Cardinality: One university contains many departments (1:N)  
+  - Participation: Total on Department
+
+- *Grouped by (Program–Department)*  
+  - Cardinality: Many programs grouped by one department (N:1)  
+  - Participation: Total on Program
+
+- *Enroll (Student–Program)*  
+  - Cardinality: Many students enroll in many programs (M:N)  
+  - Participation: Partial (students may or may not enroll)
+
+- *Offers (Program–Course)*  
+  - Cardinality: One program offers many courses (1:N)  
+  - Participation: Partial on Course
+
+- *Teach (Instructor–Course)*  
+  - Cardinality: Many instructors can teach many courses (M:N)  
+  - Participation: Partial on both sides
+
+...
+
+## Extension (Prerequisite / Billing):
+
+- *Prerequisite* is modeled as an attribute of the *Course* entity.  
+  - It likely refers to the course code of another course. This could be better represented as a *recursive relationship* on the Course entity, where a course has another course as its prerequisite.
+
+
+## Design Choices:
+- Chose *Student, **Course, **Instructor, **Program, **Department, and **University* as entities because they represent core components of a typical academic system.
+- Many-to-many relationships like *Enroll* and *Teach* reflect real-world flexibility (e.g., students taking multiple programs or instructors teaching multiple courses).
+- Prerequisite as an attribute was a simplification, but a recursive relationship might better support complex rules (e.g., multiple prerequisites).
+- All keys and attributes were chosen based on logical identifiers (like Admission number, Program ID, etc.).
+
+## RESULT:
+Thus the ER diagram for the given database is drawn successfully.
